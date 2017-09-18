@@ -1,0 +1,253 @@
+{
+	"config": {
+		"philipshue.ip": "192.168.3.11",
+		"philipshue.username": "4f67064d62b80b0d1a58d14528cc71cd",
+		"knx.token": "{\"hash\":\"kjCe4METhN48wGV\"}",
+		"knx.url.down": "http://10.84.82.239:50001/knx/5_2B01/east/down",
+		"knx.url.stop": "http://10.84.82.239:50001/knx/5_2B01/east/stop",
+		"knx.url.up": "http://10.84.82.239:50001/knx/5_2B01/east/up",
+		"knx.url.stepdown": "http://10.84.82.239:50001/knx/5_2B01/east/stepdown",
+		"knx.url.stepup": "http://10.84.82.239:50001/knx/5_2B01/east/stepup",
+		"sonos.group": "IMVS",
+		"sonos.radio.srf3": "<DIDL-Lite xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:r=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot; xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot;><item id=&quot;F00092020s15502&quot; parentID=&quot;F00020000search%3astation:srf3&quot; restricted=&quot;true&quot;><dc:title>SRF 3</dc:title><upnp:class>object.item.audioItem.audioBroadcast</upnp:class><desc id=&quot;cdudn&quot; nameSpace=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot;>SA_RINCON65031_</desc></item></DIDL-Lite>",
+		"sonos.url": "x-sonosapi-stream:s15502?sid=254&amp;flags=8224&amp;sn=0",
+		"sonos.instanceid": "0"
+	},
+	"actions": [{
+		"buttons": ["ANY"],
+		"firstChoice": "single",
+		"secondChoice": "single",
+		"order": "1",
+		"class": "PhilipsHue",
+		"method": "putCommand",
+		"parameters": [
+			"groups/0/action",
+			"{\"on\":true,\"bri\":254,\"ct\":153}"
+		]
+	}, {
+		"buttons": ["ANY"],
+		"firstChoice": "single",
+		"secondChoice": "double",
+		"order": "1",
+		"class": "PhilipsHue",
+		"method": "putCommand",
+		"parameters": [
+			"groups/0/action",
+			"{\"on\":false}"
+
+		]
+	}, {
+		"buttons": ["ANY"],
+		"firstChoice": "single",
+		"secondChoice": "hold",
+		"order": "1",
+		"class": "PhilipsHue",
+		"method": "randomFullBrightness",
+		"parameters": [
+			"groups/0/action"
+		]
+	}, {
+		"buttons": ["ANY"],
+		"firstChoice": "double",
+		"secondChoice": "single",
+		"order": "1",
+		"class": "Sonos",
+		"method": "setAvTransportURI",
+		"parameters": [
+			"IMVS",
+			"0",
+			"x-sonosapi-stream:s15502?sid=254&amp;flags=8224&amp;sn=0",
+			"<DIDL-Lite xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:r=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot; xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot;><item id=&quot;F00092020s15502&quot; parentID=&quot;F00020000search%3astation:srf3&quot; restricted=&quot;true&quot;><dc:title>SRF 3</dc:title><upnp:class>object.item.audioItem.audioBroadcast</upnp:class><desc id=&quot;cdudn&quot; nameSpace=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot;>SA_RINCON65031_</desc></item></DIDL-Lite>"
+		]
+	}, {
+		"buttons": ["ANY"],
+		"firstChoice": "double",
+		"secondChoice": "single",
+		"order": "2",
+		"class": "Sonos",
+		"method": "setVolume",
+		"parameters": [
+			"IMVS",
+			"30"
+		]
+	}, {
+		"buttons": ["ANY"],
+		"firstChoice": "double",
+		"secondChoice": "single",
+		"order": "3",
+		"class": "Sonos",
+		"method": "play",
+		"parameters": [
+			"IMVS"
+		]
+	}, {
+		"buttons": ["ANY"],
+		"firstChoice": "double",
+		"secondChoice": "double",
+		"order": "1",
+		"class": "Sonos",
+		"method": "pause",
+		"parameters": [
+			"IMVS"
+		]
+	}, {
+		"buttons": ["ANY"],
+		"firstChoice": "hold",
+		"secondChoice": "single",
+		"order": "1",
+		"class": "HttpRequester",
+		"method": "postRequest",
+		"parameters": [
+			"http://10.84.82.239:50001/knx/5_2B01/east/up",
+			"{\"hash\":\"kjCe4METhN48wGV\"}"
+		]
+	}, {
+		"buttons": ["ANY"],
+		"firstChoice": "hold",
+		"secondChoice": "double",
+		"order": "1",
+		"class": "HttpRequester",
+		"method": "postRequest",
+		"parameters": [
+			"http://10.84.82.239:50001/knx/5_2B01/east/down",
+			"{\"hash\":\"kjCe4METhN48wGV\"}"
+		]
+	}, {
+		"buttons": ["ANY"],
+		"firstChoice": "hold",
+		"secondChoice": "hold",
+		"order": "1",
+		"class": "HttpRequester",
+		"method": "postRequest",
+		"parameters": [
+			"http://10.84.82.239:50001/knx/5_2B01/east/stop",
+			"{\"hash\":\"kjCe4METhN48wGV\"}"
+		]
+	}],
+	"scenario":[{
+		"name": "Mittag",
+		"id": "0",
+		"hue": "30000",
+		"sat": "100",
+		"bri": "254",
+		"blindes": "3",
+		"on": "true",
+		"sonos": "play",
+		"volume": "15",
+		"music": "radio",
+		"radio": "0",
+		"playlist": "0"
+	}, {
+		"name": "Romantic",
+		"id": "1",
+		"hue": "1000",
+		"sat": "254",
+		"bri": "254",
+		"blindes": "1",
+		"on": "true",
+		"sonos": "play",
+		"volume": "35",
+		"music": "playlist",
+		"radio": "0",
+		"playlist": "0"
+	},{
+		"name": "Off",
+		"id": "2",
+		"hue": "1000",
+		"sat": "254",
+		"bri": "254",
+		"blindes": "3",
+		"on": "false",
+		"sonos": "pause",
+		"volume": "10",
+		"music": "playlist",
+		"radio": "0",
+		"playlist": "0"
+	},{
+		"name": "Christmas",
+		"id": "3",
+		"hue": "1000",
+		"sat": "254",
+		"bri": "254",
+		"blindes": "3",
+		"on": "true",
+		"sonos": "play",
+		"volume": "10",
+		"music": "playlist",
+		"radio": "0",
+		"playlist": "1"
+	},{
+		"name": "Rainy Day",
+		"id": "4",
+		"hue": "40000",
+		"sat": "254",
+		"bri": "254",
+		"blindes": "3",
+		"on": "true",
+		"sonos": "play",
+		"volume": "10",
+		"music": "radio",
+		"radio": "1",
+		"playlist": "1"
+	}],
+	"playlist":[{
+		"name": "Lover",
+		"id": "0",
+		"first": "x-rincon-queue:RINCON_5CAAFD4684FA01400#0",
+		"uri": "file:///jffs/settings/savedqueues.rsq#0",
+		"meta": "&lt;DIDL-Lite xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:r=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot; xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot;&gt;&lt;item id=&quot;SQ:0&quot; parentID=&quot;SQ:&quot; restricted=&quot;true&quot;&gt;&lt;dc:title&gt;IMVS&lt;/dc:title&gt;&lt;upnp:class&gt;object.container.playlistContainer&lt;/upnp:class&gt;&lt;desc id=&quot;cdudn&quot; nameSpace=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot;&gt;RINCON_AssociatedZPUDN&lt;/desc&gt;&lt;/item&gt;&lt;/DIDL-Lite&gt;"
+	},{
+		"name": "Christmas",
+		"id": "1",
+		"first": "x-rincon-queue:RINCON_5CAAFD4684FA01400#0",
+		"uri": "file:///jffs/settings/savedqueues.rsq#1",
+		"meta": "&lt;DIDL-Lite xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:r=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot; xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot;&gt;&lt;item id=&quot;SQ:1&quot; parentID=&quot;SQ:&quot; restricted=&quot;true&quot;&gt;&lt;dc:title&gt;X-Mas&lt;/dc:title&gt;&lt;upnp:class&gt;object.container.playlistContainer&lt;/upnp:class&gt;&lt;desc id=&quot;cdudn&quot; nameSpace=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot;&gt;RINCON_AssociatedZPUDN&lt;/desc&gt;&lt;/item&gt;&lt;/DIDL-Lite&gt;"
+	},{
+		"name": "80s",
+		"id": "2",
+		"first": "x-rincon-queue:RINCON_5CAAFD4684FA01400#0",
+		"uri": "file:///jffs/settings/savedqueues.rsq#2",
+		"meta": "&lt;DIDL-Lite xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:r=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot; xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot;&gt;&lt;item id=&quot;SQ:2&quot; parentID=&quot;SQ:&quot; restricted=&quot;true&quot;&gt;&lt;dc:title&gt;80s&lt;/dc:title&gt;&lt;upnp:class&gt;object.container.playlistContainer&lt;/upnp:class&gt;&lt;desc id=&quot;cdudn&quot; nameSpace=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot;&gt;RINCON_AssociatedZPUDN&lt;/desc&gt;&lt;/item&gt;&lt;/DIDL-Lite&gt;"
+	}],
+	"radio":[{
+		"name": "SRF3",
+		"id": "0",
+		"uri": "x-sonosapi-stream:s15502?sid=254&amp;flags=8224&amp;sn=0",
+		"meta": "<DIDL-Lite xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:r=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot; xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot;><item id=&quot;F00092020s15502&quot; parentID=&quot;F00020000search%3astation:srf3&quot; restricted=&quot;true&quot;><dc:title>SRF 3</dc:title><upnp:class>object.item.audioItem.audioBroadcast</upnp:class><desc id=&quot;cdudn&quot; nameSpace=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot;>SA_RINCON65031_</desc></item></DIDL-Lite>"
+	},{
+		"name": "Energy Zürich",
+		"id": "1",
+		"uri": "x-sonosapi-stream:s47530?sid=254&amp;flags=8224&amp;sn=0",
+		"meta": "&lt;DIDL-Lite xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:r=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot; xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot;&gt;&lt;item id=&quot;F00092020s47530&quot; parentID=&quot;F00020000search%3astation:energy zürich&quot; restricted=&quot;true&quot;&gt;&lt;dc:title&gt;Energy Zürich&lt;/dc:title&gt;&lt;upnp:class&gt;object.item.audioItem.audioBroadcast&lt;/upnp:class&gt;&lt;desc id=&quot;cdudn&quot; nameSpace=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot;&gt;SA_RINCON65031_&lt;/desc&gt;&lt;/item&gt;&lt;/DIDL-Lite&gt;"
+	},{
+		"name": "Energy Love",
+		"id": "2",
+		"uri": "x-sonosapi-stream:s58396?sid=254&amp;flags=8224&amp;sn=0",
+		"meta": "&lt;DIDL-Lite xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:r=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot; xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot;&gt;&lt;item id=&quot;F00092020s58396&quot; parentID=&quot;F00020000search%3astation:energy zürich&quot; restricted=&quot;true&quot;&gt;&lt;dc:title&gt;NRJ Love&lt;/dc:title&gt;&lt;upnp:class&gt;object.item.audioItem.audioBroadcast&lt;/upnp:class&gt;&lt;desc id=&quot;cdudn&quot; nameSpace=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot;&gt;SA_RINCON65031_&lt;/desc&gt;&lt;/item&gt;&lt;/DIDL-Lite&gt;"
+	},{
+		"name": "Argovia Hit Mix",
+		"id": "3",
+		"uri": "x-sonosapi-stream:s102911?sid=254&amp;flags=8224&amp;sn=0",
+		"meta": "&lt;DIDL-Lite xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:r=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot; xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot;&gt;&lt;item id=&quot;F00092020s102911&quot; parentID=&quot;F00020000search%3astation:radio argovia&quot; restricted=&quot;true&quot;&gt;&lt;dc:title&gt;Radio Argovia Hit Mix&lt;/dc:title&gt;&lt;upnp:class&gt;object.item.audioItem.audioBroadcast&lt;/upnp:class&gt;&lt;desc id=&quot;cdudn&quot; nameSpace=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot;&gt;SA_RINCON65031_&lt;/desc&gt;&lt;/item&gt;&lt;/DIDL-Lite&gt;"
+	},{
+		"name": "Argovia",
+		"id": "4",
+		"uri": "x-sonosapi-stream:s15439?sid=254&amp;flags=8224&amp;sn=0",
+		"meta": "&lt;DIDL-Lite xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:r=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot; xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot;&gt;&lt;item id=&quot;F00092020s15439&quot; parentID=&quot;F00020000search%3astation:radio argovia&quot; restricted=&quot;true&quot;&gt;&lt;dc:title&gt;Radio Argovia&lt;/dc:title&gt;&lt;upnp:class&gt;object.item.audioItem.audioBroadcast&lt;/upnp:class&gt;&lt;desc id=&quot;cdudn&quot; nameSpace=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot;&gt;SA_RINCON65031_&lt;/desc&gt;&lt;/item&gt;&lt;/DIDL-Lite&gt;"
+	},{
+		"name": "SRF4",
+		"id": "5",
+		"uri": "x-sonosapi-stream:s67023?sid=254&amp;flags=8224&amp;sn=0",
+		"meta": "&lt;DIDL-Lite xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:r=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot; xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot;&gt;&lt;item id=&quot;F00092020s67023&quot; parentID=&quot;F00020000search%3astation:srf4&quot; restricted=&quot;true&quot;&gt;&lt;dc:title&gt;SRF 4 News&lt;/dc:title&gt;&lt;upnp:class&gt;object.item.audioItem.audioBroadcast&lt;/upnp:class&gt;&lt;desc id=&quot;cdudn&quot; nameSpace=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot;&gt;SA_RINCON65031_&lt;/desc&gt;&lt;/item&gt;&lt;/DIDL-Lite&gt;"
+	},{
+		"name": "Radio Swiss Pop",
+		"id": "6",
+		"uri": "x-sonosapi-stream:s25243?sid=254&amp;flags=8224&amp;sn=0",
+		"meta": "&lt;DIDL-Lite xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:r=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot; xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot;&gt;&lt;item id=&quot;F00092020s25243&quot; parentID=&quot;F00082064r100726&quot; restricted=&quot;true&quot;&gt;&lt;dc:title&gt;Radio Swiss Pop (Top 40/Pop)&lt;/dc:title&gt;&lt;upnp:class&gt;object.item.audioItem.audioBroadcast&lt;/upnp:class&gt;&lt;desc id=&quot;cdudn&quot; nameSpace=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot;&gt;SA_RINCON65031_&lt;/desc&gt;&lt;/item&gt;&lt;/DIDL-Lite&gt;"
+	},{
+		"name": "SRF2",
+		"id": "7",
+		"uri": "x-sonosapi-stream:s15500?sid=254&amp;flags=8224&amp;sn=0",
+		"meta": "&lt;DIDL-Lite xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:r=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot; xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot;&gt;&lt;item id=&quot;F00092020s15500&quot; parentID=&quot;F00082064r100726&quot; restricted=&quot;true&quot;&gt;&lt;dc:title&gt;SRF 2 Kultur 96.6 (Klassik)&lt;/dc:title&gt;&lt;upnp:class&gt;object.item.audioItem.audioBroadcast&lt;/upnp:class&gt;&lt;desc id=&quot;cdudn&quot; nameSpace=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot;&gt;SA_RINCON65031_&lt;/desc&gt;&lt;/item&gt;&lt;/DIDL-Lite&gt;"
+	}]
+}
